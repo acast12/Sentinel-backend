@@ -12,9 +12,10 @@ router.get('/readings/latest', (req, res) => {
 
 // GET /readings/history?from=&to=
 router.get('/readings/history', (req, res) => {
-    const { from, to } = req.query;
-    const rows = db.prepare('SELECT * FROM readings where timestamp_ms BETWEEN ? AND ? ORDER BY timestamp_ms ASC').all(from, to);
-    res.json(rows);
+    const rows = db.prepare(
+        'SELECT * FROM readings ORDER BY id DESC LIMIT 500'
+    ).all();
+    res.json(rows.reverse());
 });
 
 // GET /readings/alerts
