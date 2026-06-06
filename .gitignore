@@ -1,2 +1,4 @@
 # env
 .env
+readings.db
+node_modules/
