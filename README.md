@@ -1,3 +1,4 @@
+=======
 # Sentinel — Backend
 
 Node.js/TypeScript backend for the Sentinel air quality monitor. Subscribes to live sensor readings from an MQTT broker, stores them in SQLite, and exposes a REST API for the dashboard.
@@ -29,11 +30,9 @@ HiveMQ Cloud → subscriber.ts → SQLite → routes.ts → Dashboard
 
 ## Environment Variables
 
-```
 MQTT_BROKER=mqtts://yourcluster.s1.eu.hivemq.cloud:8883
 MQTT_USERNAME=
 MQTT_PASSWORD=
-```
 
 ## Database Schema
 

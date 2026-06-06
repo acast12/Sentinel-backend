@@ -4,8 +4,8 @@ import db from './db.js';
 
 
 const client = mqtt.connect(process.env.MQTT_BROKER!, {
-    username: process.env.MQTT_USERNAME,
-    password: process.env.MQTT_PASSWORD,
+    username: process.env.MQTT_USERNAME!,
+    password: process.env.MQTT_PASSWORD!,
 });
 
 const insert = db.prepare('INSERT INTO readings (timestamp_ms, temp, humidity, eco2, tvoc, alert_temp_high, alert_temp_low, alert_humidity_high, alert_humidity_low, alert_eco2_warn, alert_eco2_bad, alert_tvoc_warn, alert_tvoc_bad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
