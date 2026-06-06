@@ -28,6 +28,7 @@
     "mqtt": "^5.15.1"
   },
   "scripts": {
+    "postinstall": "npm rebuild better-sqlite3",
     "start": "node --import tsx/esm src/index.ts",
     "dev": "tsx src/index.ts"
   }
