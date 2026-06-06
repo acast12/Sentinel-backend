@@ -28,10 +28,11 @@ HiveMQ Cloud → subscriber.ts → SQLite → routes.ts → Dashboard
 3. `npm run dev`
 
 ## Environment Variables
-
+```
 MQTT_BROKER=mqtts://yourcluster.s1.eu.hivemq.cloud:8883
 MQTT_USERNAME=
 MQTT_PASSWORD=
+```
 
 ## Database Schema
 
