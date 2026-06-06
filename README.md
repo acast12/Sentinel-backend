@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Sentinel — Backend
 
 Node.js/TypeScript backend for the Sentinel air quality monitor. Subscribes to live sensor readings from an MQTT broker, stores them in SQLite, and exposes a REST API for the dashboard.
@@ -90,4 +88,4 @@ Readings are stored in a SQLite table with columns for all four sensor values, e
 - The database file `readings.db` is excluded from version control
 - Alerts are evaluated on the firmware side and stored as integers (0/1) in SQLite
 - CORS is enabled for local development and the deployed frontend URL
->>>>>>> ec7a7bcf64a35aee4b6e06edee2bb79a378aac73
+
