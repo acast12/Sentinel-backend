@@ -45,4 +45,4 @@ Readings are stored in a SQLite table with columns for all four sensor values, e
 
 ## Deployment
 
-Deployed on Railway. Connect your GitHub repo to a new Railway project and add the environment variables from `.env.example` in the Railway dashboard. Railway automatically detects the start script from `package.json` and assigns a public URL.
+Deployed on Render. Connect your GitHub repo to a new Render project and add the environment variables from `.env.example` in the Render dashboard. Render automatically detects the start script from `package.json` and assigns a public URL.
