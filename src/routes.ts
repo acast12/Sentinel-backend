@@ -18,9 +18,9 @@ router.get('/readings/history', (req, res) => {
 
     // Sample rate based on range
     let nth = 1;
-    if (range > 6 * 60 * 60 * 1000)  nth = 5;   // 6H+: every 5th
-    if (range > 24 * 60 * 60 * 1000) nth = 20;  // 24H+: every 20th
-    if (range > 3 * 24 * 60 * 60 * 1000) nth = 60; // 3D+: every 60th
+    if (range > 6 * 60 * 60 * 1000)  nth = 10;   // 6H+: every 5th
+    if (range > 24 * 60 * 60 * 1000) nth = 30;  // 24H+: every 20th
+    if (range > 3 * 24 * 60 * 60 * 1000) nth =120; // 3D+: every 60th
 
     const rows = db.prepare(
         'SELECT * FROM readings WHERE timestamp_ms BETWEEN ? AND ? ORDER BY timestamp_ms ASC'
