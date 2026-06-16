@@ -29,7 +29,8 @@
   },
   "scripts": {
     "postinstall": "npm rebuild better-sqlite3",
-    "start": "node --import tsx/esm src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "dev": "tsx src/index.ts"
   }
 }
