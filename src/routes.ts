@@ -11,23 +11,28 @@ router.get('/readings/latest', (req, res) => {
 });
 
 // GET /readings/history?from=&to=
+const historyStmt = db.prepare(`
+  SELECT
+    (timestamp_ms / :bucket) * :bucket AS timestamp_ms,
+    AVG(temp)     AS temp,
+    AVG(humidity) AS humidity,
+    AVG(eco2)     AS eco2,
+    AVG(tvoc)     AS tvoc
+  FROM readings
+  WHERE timestamp_ms BETWEEN :from AND :to
+  GROUP BY 1
+  ORDER BY 1 ASC
+`);
+
 router.get('/readings/history', (req, res) => {
-    const from = Number(req.query.from) || Date.now() - 60 * 60 * 1000;
-    const to = Number(req.query.to) || Date.now();
-    const range = to - from;
+  const now  = Date.now();
+  const from = Number(req.query.from) || now - 60 * 60 * 1000;
+  const to   = Number(req.query.to)   || now;
+  if (from >= to) return res.status(400).json({ error: 'from must be before to' });
 
-    // Sample rate based on range
-    let nth = 1;
-    if (range > 6 * 60 * 60 * 1000)  nth = 10;   // 6H+: every 5th
-    if (range > 24 * 60 * 60 * 1000) nth = 30;  // 24H+: every 20th
-    if (range > 3 * 24 * 60 * 60 * 1000) nth =120; // 3D+: every 60th
+  const bucketMs = Math.max(1000, Math.ceil((to - from) / 500));
 
-    const rows = db.prepare(
-        'SELECT * FROM readings WHERE timestamp_ms BETWEEN ? AND ? ORDER BY timestamp_ms ASC'
-    ).all(from, to) as any[];
-
-    const thinned = rows.filter((_, i) => i % nth === 0);
-    res.json(thinned);
+  res.json(historyStmt.all({ bucket: bucketMs, from, to }));
 });
 
 // GET /readings/alerts
